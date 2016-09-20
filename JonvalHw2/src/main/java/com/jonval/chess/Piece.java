@@ -14,22 +14,14 @@ public class Piece extends Board{
     public Piece(String piece, String color) {
         team = color;
 
-        switch(piece) {
-            case "PAWN": makePawn();
-                break;
-            case "KNIGHT": makeKnight();
-                break;
-            case "TOWER": makeTower();
-                break;
-            case "QUEEN": makeQueen();
-                break;
-            case "KING": makeKing();
-                break;
-            case "RUNNER": makeRunner();
-                break;
-            default: System.err.println("Error, No Sutch Piece");
-                break;
-        }
+        if ("PAWN".equals(piece)) makePawn();
+        else if ("KNIGHT".equals(piece)) makeKnight();
+        else if ("TOWER".equals(piece)) makeTower();
+        else if ("QUEEN".equals(piece)) makeQueen();
+        else if ("KING".equals(piece)) makeKing();
+        else if ("RUNNER".equals(piece)) makeRunner();
+        else System.err.println("Error, No Sutch Piece");
+
 
     }
 
