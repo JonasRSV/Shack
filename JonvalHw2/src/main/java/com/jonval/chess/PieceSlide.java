@@ -45,7 +45,7 @@ public class PieceSlide {
     private boolean obstaclesX(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] + index <= positionGO[0] - 1) {
-            if (board[positionCURRENT[0]+index][positionCURRENT[1]].team != null) return false;
+            if (board[positionCURRENT[0]+index][positionCURRENT[1]].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -54,7 +54,7 @@ public class PieceSlide {
     private  boolean obstaclesXN(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] - index >= positionGO[0] + 1) {
-            if (board[positionCURRENT[0] - index][positionCURRENT[1]].team != null) return false;
+            if (board[positionCURRENT[0] - index][positionCURRENT[1]].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -64,7 +64,7 @@ public class PieceSlide {
     private boolean obstaclesY(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[1] + index <= positionGO[1] - 1) {
-            if (board[positionCURRENT[0]][positionCURRENT[1] + index].team != null) return false;
+            if (board[positionCURRENT[0]][positionCURRENT[1] + index].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -73,7 +73,7 @@ public class PieceSlide {
     private boolean obstaclesYN(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[1] - index >= positionGO[1] + 1) {
-            if (board[positionCURRENT[0]][positionCURRENT[1] - index].team != null) return false;
+            if (board[positionCURRENT[0]][positionCURRENT[1] - index].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -82,7 +82,7 @@ public class PieceSlide {
     private  boolean obstaclesXY(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] + index <= positionGO[0] - 1 && positionCURRENT[1] + index <= positionGO[1] - 1) {
-            if (board[positionCURRENT[0] + index][positionCURRENT[1] + index].team != null) return false;
+            if (board[positionCURRENT[0] + index][positionCURRENT[1] + index].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -91,7 +91,7 @@ public class PieceSlide {
     private boolean obstaclesNXY(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] - index >= positionGO[0] + 1 && positionCURRENT[1] - index >= positionGO[1] + 1) {
-            if (board[positionCURRENT[0] - index][positionCURRENT[1] - index].team != null) return false;
+            if (board[positionCURRENT[0] - index][positionCURRENT[1] - index].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -101,7 +101,7 @@ public class PieceSlide {
     private boolean obstaclesXNY(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] - index >= positionGO[0] + 1 && positionCURRENT[1] + index <= positionGO[1] - 1) {
-            if (board[positionCURRENT[0] - index][positionCURRENT[1] + index].team != null) return false;
+            if (board[positionCURRENT[0] - index][positionCURRENT[1] + index].team != Team.NULL) return false;
             index ++;
         }
         return true;
@@ -110,7 +110,7 @@ public class PieceSlide {
     private boolean obstaclesXYN(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
         int index = 1;
         while(positionCURRENT[0] + index <= positionGO[0] - 1 && positionCURRENT[1] - index >= positionGO[1] + 1) {
-            if (board[positionCURRENT[0] + index][positionCURRENT[1] - index].team != null) return false;
+            if (board[positionCURRENT[0] + index][positionCURRENT[1] - index].team != Team.NULL) return false;
             index ++;
         }
         return true;

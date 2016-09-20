@@ -7,8 +7,15 @@ public class Board {
 
     public final Piece[][] board;
 
-    public Board() {
+    Board() {
         Piece[][] standardBoard = new Piece[8][8];
+
+        for (int ii = 0; ii < 8; ii ++) {
+            for (int jj = 0; jj < 8; jj ++ ) {
+                standardBoard[jj][ii] = PieceFactory.newPiece(Type.NULL, Team.NULL);
+            }
+        }
+
         standardBoard[0][0] = PieceFactory.newPiece(Type.TOWER, Team.WHITE);
         standardBoard[1][0] = PieceFactory.newPiece(Type.KNIGHT, Team.WHITE);
         standardBoard[2][0] = PieceFactory.newPiece(Type.RUNNER, Team.WHITE);

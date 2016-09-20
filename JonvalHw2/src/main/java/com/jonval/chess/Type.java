@@ -1,5 +1,5 @@
 package com.jonval.chess;
 
 enum Type {
-    KING, KNIGHT, PAWN, QUEEN, RUNNER, TOWER
+    KING, KNIGHT, PAWN, QUEEN, RUNNER, TOWER, NULL
 }
