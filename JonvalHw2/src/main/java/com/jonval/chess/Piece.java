@@ -3,49 +3,15 @@ package com.jonval.chess;
 /**
  * Created by jonval on 20/09/16.
  */
-public class Piece extends Board{
+public abstract class Piece {
 
-    public String team;
+    final Team team;
 
-    public Piece() {
-        team = null;
-    }
-
-    public Piece(String piece, String color) {
+    Piece(Team color) {
         team = color;
-
-        if ("PAWN".equals(piece)) makePawn();
-        else if ("KNIGHT".equals(piece)) makeKnight();
-        else if ("TOWER".equals(piece)) makeTower();
-        else if ("QUEEN".equals(piece)) makeQueen();
-        else if ("KING".equals(piece)) makeKing();
-        else if ("RUNNER".equals(piece)) makeRunner();
-        else System.err.println("Error, No Sutch Piece");
-
-
     }
 
-    private void makePawn() {
+    public abstract Type type();
 
-    }
-
-    private void makeKnight() {
-
-    }
-
-    private void makeTower() {
-
-    }
-
-    private void makeQueen() {
-
-    }
-
-    private void makeKing() {
-
-    }
-
-    private void makeRunner() {
-
-    }
+    public abstract boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color);
 }

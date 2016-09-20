@@ -3,12 +3,21 @@ package com.jonval.chess;
 /**
  * Created by jonval on 20/09/16.
  */
-public class Runner {
+public class Runner extends Piece {
 
     private PieceSlide slide = new PieceSlide();
-    public String type = "RUNNER";
 
-    public boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board) {
+    public Runner(Team color) {
+        super(color);
+
+    }
+
+    public Type type() {
+        return Type.RUNNER;
+    }
+
+
+    public boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color) {
 
         boolean friendlyFire = (board[positionCURRENT[0]][positionCURRENT[1]].team).equals(board[positionGO[0]][positionGO[1]].team);
         boolean dxEdy = Math.abs(positionGO[0] - positionCURRENT[0]) == Math.abs(positionGO[1] - positionCURRENT[1]);
