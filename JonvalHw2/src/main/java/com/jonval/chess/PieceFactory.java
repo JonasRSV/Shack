@@ -10,6 +10,7 @@ public class PieceFactory {
             case QUEEN: return new Queen(color);
             case TOWER: return new Tower(color);
             case KNIGHT: return new Knight(color);
+            case NULL: return new Null(color);
             default: throw new IllegalArgumentException("Unknown Type");
         }
     }

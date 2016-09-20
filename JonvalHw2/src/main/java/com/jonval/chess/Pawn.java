@@ -19,7 +19,7 @@ public class Pawn extends Piece {
         int deltaX = positionGO[0] - positionCURRENT[0];
         int deltaY = positionGO[1] - positionCURRENT[1];
 
-        boolean emptyDestination = board[positionGO[0]][positionGO[1]].team == null;
+        boolean emptyDestination = board[positionGO[0]][positionGO[1]].team == Team.NULL;
         boolean friendlyFire = (board[positionCURRENT[0]][positionCURRENT[1]].team).equals(board[positionGO[0]][positionGO[1]].team);
 
         if ((deltaX == 0 && deltaY == 1) && color.equals(Team.WHITE) && emptyDestination) {
@@ -29,11 +29,11 @@ public class Pawn extends Piece {
             return true;
         }
 
-        if ((deltaX == 1 || deltaX == -1) && deltaY == 1 && color.equals(Team.WHITE) && !friendlyFire) {
+        if ((deltaX == 1 || deltaX == -1) && deltaY == 1 && color.equals(Team.WHITE) && !friendlyFire && !emptyDestination) {
             return true;
         }
 
-        if ((deltaX == 1 || deltaX == -1) && deltaY == -1 && color.equals(Team.BLACK) && !friendlyFire) {
+        if ((deltaX == 1 || deltaX == -1) && deltaY == -1 && color.equals(Team.BLACK) && !friendlyFire && !emptyDestination) {
             return true;
         }
 

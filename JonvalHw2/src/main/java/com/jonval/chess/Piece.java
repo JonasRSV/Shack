@@ -7,6 +7,7 @@ public abstract class Piece {
 
     final Team team;
 
+
     Piece(Team color) {
         team = color;
     }
