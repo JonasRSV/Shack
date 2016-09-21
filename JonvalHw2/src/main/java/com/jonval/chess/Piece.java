@@ -14,5 +14,5 @@ public abstract class Piece {
 
     public abstract Type type();
 
-    public abstract boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color);
+    public abstract ReturnState move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color);
 }

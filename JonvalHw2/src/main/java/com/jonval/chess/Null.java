@@ -10,10 +10,10 @@ public class Null extends Piece {
     }
 
     public Type type() {
-        return null;
+        return Type.NULL;
     }
 
-    public boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color) {
-        return false;
+    public ReturnState move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team color) {
+        return ReturnState.FALSE;
     }
 }

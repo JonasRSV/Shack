@@ -18,8 +18,12 @@ public class Queen extends Piece {
         return Type.QUEEN;
     }
 
-    public boolean move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team team) {
+    public ReturnState move(int[] positionCURRENT, int[] positionGO, Piece[][] board, Team team) {
         boolean friendlyFire = (board[positionCURRENT[0]][positionCURRENT[1]].team).equals(board[positionGO[0]][positionGO[1]].team);
-        return !friendlyFire && diagonals.move(positionCURRENT, positionGO, board, team) && straightlines.move(positionCURRENT, positionGO, board, team);
+
+        if (!friendlyFire &&
+                diagonals.move(positionCURRENT, positionGO, board, team).equals(ReturnState.TRUE) ||
+                straightlines.move(positionCURRENT, positionGO, board, team).equals(ReturnState.TRUE)) return ReturnState.TRUE;
+        return ReturnState.FALSE;
     }
 }
