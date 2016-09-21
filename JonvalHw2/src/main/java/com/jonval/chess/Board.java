@@ -1,20 +1,15 @@
 package com.jonval.chess;
 
-/**
- * Created by jonval on 20/09/16.
- */
-public class Board {
+class Board {
 
     public Piece[][] board;
 
-
     Board() {
-
 
         Piece[][] standardBoard = new Piece[8][8];
 
-        for (int ii = 0; ii < 8; ii ++) {
-            for (int jj = 0; jj < 8; jj ++ ) {
+        for (int ii = 0; ii < 8; ii++) {
+            for (int jj = 0; jj < 8; jj++) {
                 standardBoard[jj][ii] = PieceFactory.newPiece(Type.NULL, Team.NULL);
             }
         }

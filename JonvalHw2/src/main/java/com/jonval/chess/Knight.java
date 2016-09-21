@@ -1,11 +1,8 @@
 package com.jonval.chess;
 
-/**
- * Created by jonval on 20/09/16.
- */
-public class Knight extends Piece {
+class Knight extends Piece {
 
-    public Knight(Team color) {
+    Knight(Team color) {
         super(color);
     }
 
@@ -21,4 +18,5 @@ public class Knight extends Piece {
         if ((move1 || move2) && !friendlyFire) return ReturnState.TRUE;
         return ReturnState.FALSE;
     }
+
 }

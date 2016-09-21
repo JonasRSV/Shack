@@ -1,12 +1,9 @@
 package com.jonval.chess;
 
 import java.util.Scanner;
-/**
- * Created by jonval on 20/09/16.
- */
 
 public class Main {
-    private static GameState state  = new GameState();
+    private static GameState state = new GameState();
     private static boolean testMate = false;
     private static Team gameOver = Team.NULL;
 
@@ -18,7 +15,7 @@ public class Main {
         int[] positionGO = new int[2];
         int turn = 0;
         boolean success = false;
-        Team color;
+
         do {
             switch (turn % 2) {
                 case 0:
@@ -28,7 +25,6 @@ public class Main {
                     positionGO[0] = in.nextInt();
                     positionGO[1] = in.nextInt();
                     success = runTurn(Team.WHITE, positionCURRENT, positionGO, chessBoard);
-                    color = Team.WHITE;
                     break;
                 case 1:
                     System.out.print("\nBlack ");
@@ -37,21 +33,14 @@ public class Main {
                     positionGO[0] = in.nextInt();
                     positionGO[1] = in.nextInt();
                     success = runTurn(Team.BLACK, positionCURRENT, positionGO, chessBoard);
-                    color = Team.BLACK;
                     break;
             }
 
             if (success) turn++;
-
-            if (testMate) {
-                gameOver = state.mate(chessBoard.board, color);
-                testMate = false;
-            }
-
             printall(chessBoard);
         } while (gameOver.equals(Team.NULL));
-
     }
+
     private static boolean runTurn(Team color, int[] positionCURRENT, int[] positionGO, Board chessBoard) {
         Piece[][] previousState = deepCopy(chessBoard.board);
 
@@ -60,7 +49,6 @@ public class Main {
                 if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
                     chessBoard.board = previousState;
                     System.out.println(color + " is checked");
-                    testMate = true;
                     return false;
                 }
 
@@ -70,7 +58,6 @@ public class Main {
                 if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
                     chessBoard.board = previousState;
                     System.out.println(color + " is checked");
-                    testMate = true;
                     return false;
                 }
 
@@ -80,7 +67,6 @@ public class Main {
                 if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
                     chessBoard.board = previousState;
                     System.out.println(color + " is checked");
-                    testMate = true;
                     return false;
                 }
 
@@ -90,16 +76,11 @@ public class Main {
                 System.out.println("Can't do that\n");
                 return false;
         }
-
-
         return false;
     }
 
-
     private static ReturnState move(int[] positionCURRENT, int[] positionGO, Board chessBoard, Team color) {
-
         Piece piece = chessBoard.board[positionCURRENT[0]][positionCURRENT[1]];
-
         if (piece.team != color) return ReturnState.FALSE;
 
         switch (piece.move(positionCURRENT, positionGO, chessBoard.board, piece.team)) {
@@ -120,25 +101,24 @@ public class Main {
                 return ReturnState.FALSE;
         }
         return ReturnState.FALSE;
-
     }
 
     private static Piece[][] deepCopy(Piece[][] board) {
         Piece[][] copy = new Piece[8][8];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j ++) {
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++) {
                 copy[i][j] = board[i][j];
             }
-        }
         return copy;
     }
 
     private static void printall(Board chessBoard) {
-        for (int ii = 0; ii < 8; ii ++) {
-            for (int jj = 0; jj < 8; jj ++) {
+        for (int ii = 0; ii < 8; ii++) {
+            for (int jj = 0; jj < 8; jj++) {
                 System.out.print("  " + chessBoard.board[jj][ii].type() + " " + jj + " " + ii + "  ");
                 if (jj == 7) System.out.println();
             }
         }
     }
+
 }

@@ -1,15 +1,10 @@
 package com.jonval.chess;
 
-/**
- * Created by jonval on 20/09/16.
- */
-public class Queen extends Piece {
-
-
+class Queen extends Piece {
     private Runner diagonals = new Runner(this.team);
     private Tower straightlines = new Tower(this.team);
 
-    public Queen(Team color) {
+    Queen(Team color) {
         super(color);
     }
 
@@ -23,7 +18,9 @@ public class Queen extends Piece {
 
         if (!friendlyFire &&
                 diagonals.move(positionCURRENT, positionGO, board, team).equals(ReturnState.TRUE) ||
-                straightlines.move(positionCURRENT, positionGO, board, team).equals(ReturnState.TRUE)) return ReturnState.TRUE;
+                straightlines.move(positionCURRENT, positionGO, board, team).equals(ReturnState.TRUE))
+            return ReturnState.TRUE;
         return ReturnState.FALSE;
     }
+
 }
