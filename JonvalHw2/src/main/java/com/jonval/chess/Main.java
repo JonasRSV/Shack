@@ -1,6 +1,5 @@
 package com.jonval.chess;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * Created by jonval on 20/09/16.
@@ -8,6 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     private static GameState state  = new GameState();
+    private static boolean testMate = false;
+    private static Team gameOver = Team.NULL;
 
     public static void main(String... args) {
         Board chessBoard = new Board();
@@ -20,7 +21,6 @@ public class Main {
         boolean success = false;
 
         do {
-
             switch (turn % 2) {
                 case 0:
                     System.out.print("\nWhite: ");
@@ -31,7 +31,7 @@ public class Main {
                     success = runTurn(Team.WHITE, positionCURRENT, positionGO, chessBoard);
                     break;
                 case 1:
-                    System.out.print("\nBlack");
+                    System.out.print("\nBlack ");
                     positionCURRENT[0] = in.nextInt();
                     positionCURRENT[1] = in.nextInt();
                     positionGO[0] = in.nextInt();
@@ -39,27 +39,49 @@ public class Main {
                     success = runTurn(Team.BLACK, positionCURRENT, positionGO, chessBoard);
             }
 
-
             if (success) turn++;
 
+            if (testMate) {
+                gameOver = state.mate(chessBoard.board);
+                testMate = false;
+            }
 
             printall(chessBoard);
-            System.out.println(state.shack(0, chessBoard.board, Team.NULL) + " is Checked");
-
-        } while (state.mate(chessBoard.board) == Team.NULL);
+        } while (gameOver.equals(Team.NULL));
 
     }
     private static boolean runTurn(Team color, int[] positionCURRENT, int[] positionGO, Board chessBoard) {
-
+        Piece[][] previousState = deepCopy(chessBoard.board);
 
         switch (move(positionCURRENT, positionGO, chessBoard, color)) {
             case TRUE:
+                if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
+                    chessBoard.board = previousState;
+                    System.out.println(color + " is checked");
+                    testMate = true;
+                    return false;
+                }
+
                 System.out.println("Succesful Move\n");
                 return true;
             case SPECIAL:
+                if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
+                    chessBoard.board = previousState;
+                    System.out.println(color + " is checked");
+                    testMate = true;
+                    return false;
+                }
+
                 System.out.println("Special Move\n");
                 return true;
             case CASTLING:
+                if (color.equals(state.shack(0, chessBoard.board, Team.NULL))) {
+                    chessBoard.board = previousState;
+                    System.out.println(color + " is checked");
+                    testMate = true;
+                    return false;
+                }
+
                 System.out.println("Castling\n");
                 return true;
             case FALSE:
@@ -99,6 +121,15 @@ public class Main {
 
     }
 
+    private static Piece[][] deepCopy(Piece[][] board) {
+        Piece[][] copy = new Piece[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j ++) {
+                copy[i][j] = board[i][j];
+            }
+        }
+        return copy;
+    }
 
     private static void printall(Board chessBoard) {
         for (int ii = 0; ii < 8; ii ++) {

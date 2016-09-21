@@ -5,9 +5,12 @@ package com.jonval.chess;
  */
 public class Board {
 
-    public final Piece[][] board;
+    public Piece[][] board;
+
 
     Board() {
+
+
         Piece[][] standardBoard = new Piece[8][8];
 
         for (int ii = 0; ii < 8; ii ++) {
