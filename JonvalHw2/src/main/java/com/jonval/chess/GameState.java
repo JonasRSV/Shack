@@ -6,19 +6,30 @@ package com.jonval.chess;
 public class GameState {
 
     public Passant passant = new Passant();
-
     public static Team inCheck = Team.NULL;
 
-    public Team mate(Piece[][] board) {
 
-        Team color_in_Shack = shack(0, board, Team.NULL);
-        switch (color_in_Shack) {
-            case BOTH: return Team.NULL;
-            case WHITE: return Team.NULL;
-            case BLACK: return Team.NULL;
+    public Team mate(Piece[][] board, Team color) {
+        Piece[][] copy = deepCopy(board);
+
+        int x = 0;
+        int y = 0;
+
+        for (Piece[] pA: copy) {
+            y++;
+            for (Piece p: pA) {
+                x++;
+            }
+            x = 0;
         }
 
+
+
         return Team.NULL;
+    }
+
+    private boolean stopMate(Piece[][] board, Piece type, int[] position) {
+
     }
 
     public Team shack(int kingPosition, Piece[][] board, Team color) {
@@ -48,5 +59,15 @@ public class GameState {
 
         }
         return shack(kingPosition, board, color);
+    }
+
+    private static Piece[][] deepCopy(Piece[][] board) {
+        Piece[][] copy = new Piece[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j ++) {
+                copy[i][j] = board[i][j];
+            }
+        }
+        return copy;
     }
 }

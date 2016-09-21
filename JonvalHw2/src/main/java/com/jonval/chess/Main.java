@@ -17,9 +17,8 @@ public class Main {
         int[] positionCURRENT = new int[2];
         int[] positionGO = new int[2];
         int turn = 0;
-        Team color;
         boolean success = false;
-
+        Team color;
         do {
             switch (turn % 2) {
                 case 0:
@@ -29,6 +28,7 @@ public class Main {
                     positionGO[0] = in.nextInt();
                     positionGO[1] = in.nextInt();
                     success = runTurn(Team.WHITE, positionCURRENT, positionGO, chessBoard);
+                    color = Team.WHITE;
                     break;
                 case 1:
                     System.out.print("\nBlack ");
@@ -37,12 +37,14 @@ public class Main {
                     positionGO[0] = in.nextInt();
                     positionGO[1] = in.nextInt();
                     success = runTurn(Team.BLACK, positionCURRENT, positionGO, chessBoard);
+                    color = Team.BLACK;
+                    break;
             }
 
             if (success) turn++;
 
             if (testMate) {
-                gameOver = state.mate(chessBoard.board);
+                gameOver = state.mate(chessBoard.board, color);
                 testMate = false;
             }
 
